@@ -43,12 +43,13 @@ const addBook = async (req, res, next) => {
     await book.save();
   } catch (err) {
     console.log(err);
+    return res.json({message:'some error occured'})
   }
 
   if (!book) {
-    return res.status(500).json({ message: "Unable To Add" });
+    return res.json({ message: "Unable To Add" });
   }
-  return res.status(201).json({ book });
+  return res.json({ book });
 };
 
 const updateBook = async (req, res, next) => {
