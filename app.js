@@ -6,7 +6,15 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
+
+app.use(cors(
+    {
+        origin: ["https://bookstore-backend-blush-gamma.vercel.app"],
+        methods: ["POST", "GET","PUT","DELETE"],
+        credentials: true
+    }
+));
 app.use("/books", router); // localhost:5000/books
 
 // mongoose
