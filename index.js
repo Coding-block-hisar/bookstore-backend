@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(cors(
     {
-        origin: ["https://bookstore-backend-blush-gamma.vercel.app"],
+        origin: ["https://bookstore-frontend-steel.vercel.app"],
         methods: ["POST", "GET","PUT","DELETE"],
         credentials: true
     }
