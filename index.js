@@ -13,6 +13,7 @@ const corsOptions = {
   origin: 'https://bookstore-frontend-steel.vercel.app/', // Allow only this origin
    methods: ["POST", "GET","UPDATE","DELETE"],
   credentials: true, // Allow credentials to be sent
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
  }
 
  app.use(cors(corsOptions));
