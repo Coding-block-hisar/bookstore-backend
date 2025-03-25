@@ -7,7 +7,10 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
- app.use(cors({origin:'*'}));
+ app.use(cors({
+  origin: 'https://bookstore-frontend-steel.vercel.app/', // Allow only this origin
+  credentials: true, // Allow credentials to be sent
+ }));
 
 // app.use(cors({
 //   origin: 'https://bookstore-frontend-steel.vercel.app' // specify the frontend URL
