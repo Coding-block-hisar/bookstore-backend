@@ -17,10 +17,10 @@ const corsOptions = {
 };
 
 // Use CORS middleware with specified options
-app.use(cors(corsOptions));
-app.options('*', (req, res) => {
-  res.status(200).end(); // Send 200 OK status for OPTIONS requests
-});
+app.use(cors());
+// app.options('*', (req, res) => {
+//   res.status(200).end(); // Send 200 OK status for OPTIONS requests
+// });
 // Book Routes
 app.use("/books", router); // Route for handling books (CRUD)
 
