@@ -8,50 +8,34 @@ const app = express();
 // Middlewares
 app.use(express.json());
 
-
+// CORS Configuration
 const corsOptions = {
-  origin: 'https://bookstore-frontend-steel.vercel.app/', // Allow only this origin
-   methods: ["POST", "GET","UPDATE","DELETE"],
-  credentials: true, // Allow credentials to be sent
+  origin: 'https://bookstore-frontend-steel.vercel.app', // Allow only this origin
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allow these methods
+  credentials: true, // Allow credentials (cookies, authorization headers)
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
- }
+};
 
- app.use(cors(corsOptions));
- app.use(cors(corsOptions));
+// Use CORS middleware with specified options
+app.use(cors(corsOptions));
 
-// app.use(cors({
-//   origin: 'https://bookstore-frontend-steel.vercel.app' // specify the frontend URL
-// }));
+// Book Routes
+app.use("/books", router); // Route for handling books (CRUD)
 
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'https://bookstore-frontend-steel.vercel.app'); // or '*' to allow all origins
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); 
-//   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); 
-//   next();
-// });
+// Basic route for testing the backend
+app.get("/", (req, res) => {
+  res.send("Welcome to the backend!");
+});
 
-app.use("/books", router); // localhost:5000/books
-
-// mongoose
-//   .connect(
-//     "mongodb://127.0.0.1:27017/bookstore"
-//   )
-//   .then(() => console.log("Connected To Database"))
-//   .then(() => {
-//     app.listen(5000);
-//   })
-//   .catch((err) => console.log(err));
-
-app.get("/",(req,res)=>{
-  res.send("welcome to the backend");
-})
-
+// Connect to MongoDB
 mongoose
-  .connect(
-    'mongodb+srv://codingblockindia:2i7wGs34RYHsdQ0P@contact.ewc0xy6.mongodb.net/?retryWrites=true&w=majority&appName=contact'
-  )
-  .then(() => console.log("Connected To Database"))
+  .connect('mongodb+srv://codingblockindia:2i7wGs34RYHsdQ0P@contact.ewc0xy6.mongodb.net/?retryWrites=true&w=majority&appName=contact')
   .then(() => {
-    app.listen(5000);
+    console.log("Connected to Database");
+    app.listen(5000, () => {
+      console.log("Server is running on port 5000");
+    });
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log("Database connection error:", err);
+  });
