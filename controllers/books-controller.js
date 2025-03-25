@@ -43,7 +43,7 @@ const addBook = async (req, res, next) => {
     await book.save();
   } catch (err) {
     console.log(err);
-    return res.json({message:'some error occured'})
+    return res.json({message:err})
   }
 
   if (!book) {
