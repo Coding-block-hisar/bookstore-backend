@@ -19,6 +19,9 @@ app.use("/books", router); // localhost:5000/books
 //   })
 //   .catch((err) => console.log(err));
 
+app.get("/",(req,res)=>{
+  res.send("welcome to the backend");
+})
 
 mongoose
   .connect(
